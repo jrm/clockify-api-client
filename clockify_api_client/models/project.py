@@ -46,3 +46,18 @@ class Project(AbstractClockify):
         except Exception as e:
             logging.error("API error: {0}".format(e))
             raise e
+        
+    def update_project(self, workspace_id, project_id, payload):
+        """Update Project.
+        :param workspace_id Id of workspace.
+        :param project_id   Project Id.
+        :param payload      Project data to update.
+        :return             Dictionary representation of project.
+        """
+        try:
+            url = self.base_url + '/workspaces/' + workspace_id + '/projects/' + project_id
+            return self.put(url, payload)
+        except Exception as e:
+            logging.error("API error: {0}".format(e))
+            raise e
+
